@@ -1,0 +1,40 @@
+version: "3"
+services:
+  # Microservice 1 (Bash Script Service with FastAPI)
+  sms_system:
+    build:
+      context: .
+      dockerfile: dockerFile1 # This Dockerfile will contain Microservice 1 config
+    container_name: sms_system
+    restart: always
+    # volumes:
+    #   - ./app:/app
+    links:
+      - mongo
+    ports:
+      - "8001:8001" # Expose API for Microservice 1 on port 8001
+    depends_on:
+      - mongo
+
+  # Microservice 2 (FastAPI API Service)
+  # api_service:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile2 # This Dockerfile will contain Microservice 2 config
+  #   container_name: api_service
+  #   ports:
+  #     - "8000:8000" # Expose FastAPI for Microservice 2 on port 8000
+  #   depends_on:
+  #     - bash_service # Ensure Microservice 1 is running before Microservice 2
+  #   volumes:
+  #     - ./app:/app
+
+  # MongoDB Service
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+    restart: always

@@ -1,0 +1,8 @@
+fastapi
+alembic
+psycopg2
+asyncpg
+SQLAlchemy
+python-dotenv
+bcrypt
+pyjwt

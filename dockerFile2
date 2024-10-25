@@ -1,0 +1,17 @@
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy the FastAPI app to the container
+COPY api_service_micro2.py /app/api_service_micro2.py
+
+# Install FastAPI and Uvicorn
+RUN pip install fastapi uvicorn requests
+
+# Expose the FastAPI app on port 8000
+EXPOSE 8000
+
+# Run the FastAPI app using Uvicorn
+CMD ["uvicorn", "api_service_micro2:app", "--host", "0.0.0.0", "--port", "8000"]
