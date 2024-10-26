@@ -20,7 +20,7 @@ class SessionRequest(BaseModel):
 # Function to start a screen session
 def start_screen_session(country, operator):
     session_name = f"{country}_{operator}"
-    print(f"session_name: {session_name}")
+    print(f"session_name start : {session_name}")
     # Check if the session already exists
     existing_sessions = subprocess.run(["screen", "-ls"], capture_output=True, text=True).stdout
     print(f"existing sessions: {existing_sessions}")
@@ -42,17 +42,20 @@ def start_screen_session(country, operator):
 
 # Function to stop a screen session
 def stop_screen_session(country, operator):
-    session_name = f"{country}-{operator}"
+    session_name = f"{country}_{operator}"
 
     try:
-        subprocess.run(["screen" , "-S", session_name, "-X", "quit"])
+        print(f"session_name start : {session_name}")
+
+        subprocess.run(["screen" , "-S", session_name, "-X" "quit"])
+        os.system(f"screen -S {session_name} -X quit")
+
         collection.update_one({"country": country, "operator": operator}, {"$set": {"status": "Inactive"}})
 
     except subprocess.CalledProcessError as e:
             print(f"Error starting session for {session_name}: {e}")
     except Exception as e:
         print(f"Unexpected error starting session for {session_name}: {e}")
-    # os.system(f"screen -S {session_name} -X quit")
     # print(f"Stopped session for {session_name}")
 
 # Insert default country-operator pairs into MongoDB if empty
@@ -100,6 +103,13 @@ def start_session(request: SessionRequest):
 def stop_session(request: SessionRequest):
     stop_screen_session(request.country, request.operator)
     return {"message": f"Stopped session for {request.country} - {request.operator}"}
+
+# API to stop a session
+@app.post("/restart_session")
+def stop_session(request: SessionRequest):
+    stop_screen_session(request.country, request.operator)
+    start_screen_session(request.country, request.operator)
+    return {"message": f"restarted session for {request.country} - {request.operator}"}
 
 
 @app.get("/get-analytics")

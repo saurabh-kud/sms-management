@@ -6,3 +6,5 @@ SQLAlchemy
 python-dotenv
 bcrypt
 pyjwt
+pymongo
+requests
