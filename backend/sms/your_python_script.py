@@ -1,5 +1,6 @@
 import argparse
 import time
+from datetime import datetime
 
 import random
 import time
@@ -71,6 +72,8 @@ def store_data_in_mongodb(data):
         collection = db['sms_analytics']
         
         # Insert the data into MongoDB
+        data['timestamp'] = datetime.utcnow()
+        print(data)
         
         collection.insert_one(data)
         print("Data successfully stored in MongoDB.")

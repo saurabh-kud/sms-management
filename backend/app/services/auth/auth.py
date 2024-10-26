@@ -54,9 +54,7 @@ def create_access_token(
 def decode_jwt(token: str) -> dict:
     """Decode the JWT token and return payload if valid."""
     try:
-        print("token:",token)
         payload = jwt.decode(token, "123456", algorithms="HS256")
-        print(payload)
         return payload
     except Exception as e:
         print(str(e))
@@ -114,7 +112,6 @@ def login(email: str,password: str,  db_session: Session):
 
 async def current_user(token: str = Depends(oauth2_scheme), db_session: Session = Depends(get_session)) -> User:
     """Middleware to get current user based on JWT token."""
-    print(token)
     payload = decode_jwt(token)
     if payload is None:
         raise CustomException(status=401,message="Invalid token or token has expired")
