@@ -1,0 +1,451 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": {
+                    "type": "grafana",
+                    "uid": "-- Grafana --"
+                },
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+            }
+        ]
+    },
+    "description": "dashboard for sms management for sent recived success rate and all",
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 2,
+    "links": [
+        {
+            "asDropdown": false,
+            "icon": "external link",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [],
+            "targetBlank": false,
+            "title": "New link",
+            "tooltip": "",
+            "type": "dashboards",
+            "url": ""
+        }
+    ],
+    "panels": [
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "ce2240k0qopa8b"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 10,
+                "x": 0,
+                "y": 0
+            },
+            "id": 1,
+            "options": {
+                "minVizHeight": 75,
+                "minVizWidth": 75,
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true,
+                "sizing": "auto"
+            },
+            "pluginVersion": "11.3.0",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "ce2240k0qopa8b"
+                    },
+                    "disableTextWrap": false,
+                    "editorMode": "code",
+                    "expr": "sms_attempts",
+                    "fullMetaSearch": false,
+                    "hide": false,
+                    "includeNullMetadata": true,
+                    "instant": false,
+                    "legendFormat": "__auto",
+                    "range": true,
+                    "refId": "B",
+                    "useBackend": false
+                }
+            ],
+            "title": "Sms Attempt",
+            "type": "gauge"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "ce2240k0qopa8b"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 13,
+                "x": 10,
+                "y": 0
+            },
+            "id": 2,
+            "options": {
+                "minVizHeight": 75,
+                "minVizWidth": 75,
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true,
+                "sizing": "auto"
+            },
+            "pluginVersion": "11.3.0",
+            "targets": [
+                {
+                    "disableTextWrap": false,
+                    "editorMode": "builder",
+                    "expr": "sms_sent",
+                    "fullMetaSearch": false,
+                    "includeNullMetadata": true,
+                    "legendFormat": "__auto",
+                    "range": true,
+                    "refId": "A",
+                    "useBackend": false
+                }
+            ],
+            "title": "Sms sent",
+            "type": "gauge"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "ce2240k0qopa8b"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 10,
+                "x": 0,
+                "y": 6
+            },
+            "id": 3,
+            "options": {
+                "minVizHeight": 75,
+                "minVizWidth": 75,
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true,
+                "sizing": "auto"
+            },
+            "pluginVersion": "11.3.0",
+            "targets": [
+                {
+                    "disableTextWrap": false,
+                    "editorMode": "builder",
+                    "expr": "sms_confirmed",
+                    "fullMetaSearch": false,
+                    "includeNullMetadata": true,
+                    "legendFormat": "__auto",
+                    "range": true,
+                    "refId": "A",
+                    "useBackend": false
+                }
+            ],
+            "title": "Sms confirmed",
+            "type": "gauge"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "ce2240k0qopa8b"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 13,
+                "x": 10,
+                "y": 6
+            },
+            "id": 4,
+            "options": {
+                "minVizHeight": 75,
+                "minVizWidth": 75,
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true,
+                "sizing": "auto"
+            },
+            "pluginVersion": "11.3.0",
+            "targets": [
+                {
+                    "disableTextWrap": false,
+                    "editorMode": "builder",
+                    "expr": "sms_confirm_rate",
+                    "fullMetaSearch": false,
+                    "includeNullMetadata": true,
+                    "legendFormat": "__auto",
+                    "range": true,
+                    "refId": "A",
+                    "useBackend": false
+                }
+            ],
+            "title": "Sms success rate",
+            "type": "gauge"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "ce2240k0qopa8b"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 10,
+                "x": 0,
+                "y": 14
+            },
+            "id": 5,
+            "options": {
+                "minVizHeight": 75,
+                "minVizWidth": 75,
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true,
+                "sizing": "auto"
+            },
+            "pluginVersion": "11.3.0",
+            "targets": [
+                {
+                    "disableTextWrap": false,
+                    "editorMode": "builder",
+                    "expr": "sms_confirm_rate",
+                    "fullMetaSearch": false,
+                    "includeNullMetadata": true,
+                    "legendFormat": "__auto",
+                    "range": true,
+                    "refId": "A",
+                    "useBackend": false
+                }
+            ],
+            "title": "sms confired rate",
+            "type": "gauge"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "ce2240k0qopa8b"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green"
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 13,
+                "x": 10,
+                "y": 14
+            },
+            "id": 6,
+            "options": {
+                "minVizHeight": 75,
+                "minVizWidth": 75,
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true,
+                "sizing": "auto"
+            },
+            "pluginVersion": "11.3.0",
+            "targets": [
+                {
+                    "disableTextWrap": false,
+                    "editorMode": "builder",
+                    "expr": "process_cpu_seconds_total",
+                    "fullMetaSearch": false,
+                    "includeNullMetadata": true,
+                    "legendFormat": "__auto",
+                    "range": true,
+                    "refId": "A",
+                    "useBackend": false
+                }
+            ],
+            "title": "process Cpu second ",
+            "type": "gauge"
+        }
+    ],
+    "preload": false,
+    "schemaVersion": 40,
+    "tags": [],
+    "templating": {
+        "list": []
+    },
+    "time": {
+        "from": "now-5m",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "sms manament",
+    "uid": "ce23ron7dhy4gd",
+    "version": 13,
+    "weekStart": ""
+}

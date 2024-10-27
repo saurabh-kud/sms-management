@@ -8,6 +8,9 @@ from app.error.handler import value_error_handler
 from app.error.handler import custom_error_handler
 import time
 import uvicorn
+# from prometheus_fastapi_instrumentator import Instrumentator
+import prometheus_client
+from fastapi import Response
 
 
 startTime = time.time()
@@ -23,6 +26,7 @@ from app.utils.uptime import getUptime
 from app.api.main import api_router
 
 
+
 app = FastAPI(
     title=APP_NAME,
     version=APP_VERSION,
@@ -36,6 +40,25 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+
+
+# instrumentator = Instrumentator().add(
+#     sms_attempts
+# ).add(
+#     sms_sent
+# ).add(
+#     sms_received
+# ).add(
+#     sms_confirmed
+# ).add(
+#     sms_success_rate
+# ).add(
+#     sms_confirm_rate
+# )
+# # prometheus service configration
+
 
 
 # @app.exception_handler(custom_handler.CustomException)
@@ -68,6 +91,12 @@ async def health_route(req: Request):
 
 app.include_router(api_router)
 
-print(PORT)
+@app.get("/metrics")
+def get_metrics():
+    return Response(
+        content=prometheus_client.generate_latest(),
+        media_type= "text/plain"
+    )
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080, reload=True)

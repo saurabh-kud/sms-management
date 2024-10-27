@@ -3,32 +3,14 @@ from app.error.custom_exception import CustomException
 from pymongo import MongoClient
 import requests
 
+
+from app.config import MONGO_HOST
+
 # MongoDB connection
-client = MongoClient('mongodb://localhost:27017')
+client = MongoClient(f'mongodb://{MONGO_HOST}:27017')
 db = client['sms_service']
 collection = db['sms_analytics']
 
-
-
-from pymongo import MongoClient
-from app.services.response import APIResponse
-from app.error.custom_exception import CustomException
-
-# MongoDB connection
-client = MongoClient('mongodb://localhost:27017')
-db = client['sms_service']
-collection = db['sms_analytics']
-
-
-
-from pymongo import MongoClient
-from app.services.response import APIResponse
-from app.error.custom_exception import CustomException
-
-# MongoDB connection
-client = MongoClient('mongodb://localhost:27017')
-db = client['sms_service']
-collection = db['sms_analytics']
 
 
 
@@ -74,6 +56,17 @@ collection = db['sms_analytics']
 
 
 
+# Define metrics for tracking SMS actions
+from prometheus_client import Gauge
+
+# Define metrics with labels for country and operator
+sms_attempts = Gauge('sms_attempts', 'Number of SMS attempts', ['country', 'operator'])
+sms_sent = Gauge('sms_sent', 'Number of SMS sent', ['country', 'operator'])
+sms_received = Gauge('sms_received', 'Number of SMS received', ['country', 'operator'])
+sms_confirmed = Gauge('sms_confirmed', 'Number of SMS confirmed', ['country', 'operator'])
+sms_success_rate = Gauge('sms_success_rate', 'Success rate of SMS', ['country', 'operator'])
+sms_confirm_rate = Gauge('sms_confirm_rate', 'Confirm rate of SMS', ['country', 'operator'])
+
 def get_metrics(country_code=None):
     response = APIResponse()
     sessions = collection.find({})
@@ -109,6 +102,13 @@ def get_metrics(country_code=None):
                     "timestamp": session["timestamp"].strftime("%Y-%m-%d %H:%M:%S")  # Format timestamp
                 }
                 country_data[cc]["operators"].append(operator_entry)
+
+                sms_attempts.labels(country=cc, operator=operator).set(metrics.get("attempts", 0))
+                sms_sent.labels(country=cc, operator=operator).set(metrics.get("sent", 0))
+                sms_received.labels(country=cc, operator=operator).set(metrics.get("received", 0))
+                sms_confirmed.labels(country=cc, operator=operator).set(metrics.get("confirmed", 0))
+                sms_success_rate.labels(country=cc, operator=operator).set(metrics.get("success_rate", 0))
+                sms_confirm_rate.labels(country=cc, operator=operator).set(metrics.get("confirm_rate", 0))
 
     # Convert the structured data to a list for the response
     response_data = list(country_data.values())

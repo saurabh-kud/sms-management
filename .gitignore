@@ -1,3 +1,5 @@
 v_env/
 data/
 __pycache__/
+.env
+grafana_data/

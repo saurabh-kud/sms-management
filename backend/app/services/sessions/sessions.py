@@ -3,12 +3,15 @@ from app.error.custom_exception import CustomException
 from pymongo import MongoClient
 import requests
 
+from app.config import MONGO_HOST
+from app.config import SMS_HOST
+
 # MongoDB connection
-client = MongoClient('mongodb://localhost:27017')
+client = MongoClient(f'mongodb://{MONGO_HOST}:27017')
 db = client['sms_service']
 collection = db['countryOperator']
 
-MICRO1_URL = "http://localhost:8001"  # Base URL of Microservice 1
+MICRO1_URL = f"http://{SMS_HOST}:8001" 
 
 
 

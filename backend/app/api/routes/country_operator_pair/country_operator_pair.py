@@ -11,7 +11,7 @@ from app.api.routes.sessions.models import SessionRequest
 from app.api.routes.country_operator_pair.models import CountryOperatorPairRequest
 
 
-router = APIRouter( tags=["country-operator"])
+router = APIRouter( tags=["country-operator-pair"])
 
 
 @router.get("/country")
