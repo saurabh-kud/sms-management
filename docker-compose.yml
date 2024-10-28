@@ -40,6 +40,18 @@ services:
       options:
         max-size: "50m"
         max-file: "6"
+  web_server:
+    build: ./frontend
+    container_name: web_server
+    restart: always
+    command: >
+      /bin/sh -c "npm run dev -- --host 0.0.0.0"
+    ports:
+      - "5173:5173" # Expose API for Microservice 1 on port 8001
+    depends_on:
+      - management_server
+    environment:
+      - VITE_APP_BASE_URL=http://localhost:8000/api
   relational_db:
     image: postgres:15.2-alpine
     restart: always
