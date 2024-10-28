@@ -1,0 +1,114 @@
+.con {
+  margin: 0.2rem auto;
+  max-width: 1200px;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: #15aabf;
+  border-radius: 10px;
+  color: white;
+}
+
+.main h1 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.main button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  padding: 12px 25px;
+  background-color: #077685;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.main button:hover {
+  background-color: #07606b;
+  color: #fff;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.show_contact {
+  margin-top: 3rem;
+}
+
+.contact-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-10px);
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #15aabf;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #045d6a;
+}
+
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .main button {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .contact {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}

@@ -1,0 +1,72 @@
+.container {
+  height: 4rem;
+  background-color: #15aabf;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem 0 1rem;
+  overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: xx-large;
+  margin-right: 5rem;
+  text-decoration: none;
+  color: white;
+}
+
+.searchinput {
+  padding: 1rem 0.5rem 1rem 0.5rem;
+  width: 20rem;
+
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  margin: 0 1rem;
+  font-weight: bold;
+}
+
+::placeholder {
+  font-size: large;
+  color: rgba(46, 7, 203, 0.569);
+}
+
+.list ul {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.list li,
+.logout {
+  margin-left: 3rem;
+  font-weight: 500;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+
+.list a,
+span {
+  text-decoration: underline;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.list a:hover,
+span:hover {
+  color: #045d6a;
+}
+
+.list {
+  align-items: center;
+}

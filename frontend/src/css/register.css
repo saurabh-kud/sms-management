@@ -1,0 +1,181 @@
+.container1 {
+  background-color: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 3rem auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.container1 h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.innerform form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.innerform {
+
+  input,
+  input[type="text"] {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+    color: #333;
+  }
+}
+
+.innerform input:focus {
+  border-color: #15aabf;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(21, 170, 191, 0.2);
+}
+
+.innerform input::placeholder {
+  color: #000;
+  opacity: 0.7;
+  font-size: 0.95rem;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.innerform button {
+  width: fit-content;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  background-color: #15aabf;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: center;
+  transform: scale(1);
+  transition: background-color 0.3s ease;
+}
+
+.innerform button:hover {
+  background-color: #045d6a;
+}
+
+.innerform button:active {
+  background-color: #15aabf;
+}
+
+.innerform p {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 17px;
+
+  a {
+    text-decoration: none;
+    color: #15aabf;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: #045d6a;
+    }
+  }
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 2px solid #15aabf;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.checkbox-label input:checked {
+  background-color: #15aabf;
+  border-color: #15aabf;
+}
+
+.checkbox-label input:checked::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 4px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-label input:hover {
+  border-color: #045d6a;
+}
+
+.checkbox-label input:active {
+  background-color: #045d6a;
+}
+
+.checkbox-label span {
+  font-size: 1rem;
+  color: #333;
+}
+
+
+.error {
+  text-align: center;
+  color: #e63946;
+  font-size: 0.9rem;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .container1 {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .innerform input,
+  .innerform button {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}

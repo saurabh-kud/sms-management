@@ -1,0 +1,192 @@
+/* styles/OperatorDashboard.css */
+
+.dashboard-card {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.controls-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+/* Select Styles */
+.select-container {
+  position: relative;
+  width: 150px;
+}
+
+.select-trigger {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #07070787;
+  border-radius: 4px;
+  background: rgb(252, 255, 255);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(7, 7, 7);
+}
+
+.select-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  margin-top: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.select-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.select-item:hover {
+  background: #f5f7f8;
+}
+
+/* Button Styles */
+.toggle-button {
+  padding: 8px;
+  border: 1px solid #02020596;
+  border-radius: 4px;
+  background: rgb(252, 255, 255);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.toggle-button:hover {
+  background: #08090aaa;
+}
+
+/* Chart Container */
+.chart-container {
+  height: 400px;
+  width: 100%;
+}
+
+/* Table Styles */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+  padding: 12px;
+  border-bottom: 1px solid #010203;
+}
+
+.dashboard-table th {
+  font-weight: 600;
+  background: #f9fafb;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Loading State */
+.loading-state {
+  padding: 2rem;
+  text-align: center;
+  color: #6b7280;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .controls-container {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .dashboard-table {
+    font-size: 0.875rem;
+  }
+}
+/* Custom tooltip styles */
+.custom-tooltip {
+  background-color: white;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.custom-tooltip p {
+  margin: 0;
+  padding: 4px 0;
+  color: black;
+  font-size: 14px;
+}
+
+.custom-tooltip .tooltip-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.custom-tooltip .tooltip-data {
+  display: flex;
+  gap: 4px;
+}
+
+.tooltip-success-rate {
+  color: #4f46e5 !important; /* Blue color matching the bar */
+  font-weight: 500;
+}
+
+.tooltip-confirm-rate {
+  color: #22c55e !important; /* Green color matching the bar */
+  font-weight: 500;
+}
+
+.recharts-tooltip-wrapper {
+  z-index: 1000;
+}
