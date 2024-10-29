@@ -1,14 +1,11 @@
 version: "3"
 services:
-  # Microservice 1 (Bash Script Service with FastAPI)
   sms_system:
-    build: ./backend/sms_system
+    build: ./backend
     container_name: sms_system
     restart: always
     command: >
       /bin/sh -c "uvicorn main:app --host 0.0.0.0 --port 8001"
-    # volumes:
-    #   - ./app:/app
     links:
       - mongo
     ports:
@@ -90,5 +87,4 @@ services:
 volumes:
   db_volume:
   mongo_volume:
-  prometheus_data:
   grafana_data:

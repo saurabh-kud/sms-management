@@ -4,7 +4,7 @@ FROM python:3.11-slim
 
 # Install PostgreSQL development libraries
 RUN apt-get update && \
-    apt-get install -y cmake libpq-dev && \
+    apt-get install -y cmake libpq-dev jq screen && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
@@ -16,3 +16,6 @@ WORKDIR /app
 COPY ./alembic /app/alembic
 COPY ./alembic.ini /app/alembic.ini
 COPY ./app /app/app
+# sms server
+COPY ./sms_system/main.py /app
+COPY ./sms_system/script.py /app

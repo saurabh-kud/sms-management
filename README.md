@@ -28,7 +28,7 @@
 Comprehensive API documentation is available through Postman:
 [📘 API Documentation](https://documenter.getpostman.com/view/38681155/2sAY4uDPkW)
 
-# task
+# 📝 task
 
 Your task is to build a web-based dashboard that dynamically manages and monitors the
 SMSsystem running on a Linux server. The system consists of multiple Python programs (5-6
@@ -121,9 +121,11 @@ $ docker compose -f docker-compose.yml -p sms-stack up -d --build --force-recrea
 | Prometheus  | http://localhost:9090          | -           |
 | Grafana     | http://localhost:3000          | admin/admin |
 
+> 📘 **Note**: After running the container for very first you have to wait for 2 min to get real-time metrices
+
 ---
 
-> **Note**: visulization setup
+## 🎨 Grafana Dashboard Setups
 
 - Open URL `http://localhost:3000` with default credential admin/admin
 - Click on add your first datasouce put `http://sms-stack-prometheus-1:9090` on connection url and click on save and test
