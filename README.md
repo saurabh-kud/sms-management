@@ -56,7 +56,7 @@ system that enables:
 ## 🏗️ Architecture
 
 <div align="center">
-  <img src="./example/arch.png" alt="Architecture Diagram" />
+  <img src="./examples/arch.png" alt="Architecture Diagram" />
 </div>
 
 ## 🛠️ Tech Stack
