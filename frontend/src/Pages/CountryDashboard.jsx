@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FiUpload } from "react-icons/fi";
 
-import AssignmentCard from "../Components/AssignmentCard";
 import "../css/register.css";
 import "../css/dashboard.css";
 import axios from "axios";
@@ -18,7 +17,7 @@ const CountryDashboard = () => {
   const { user } = useSelector((state) => state.auth);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [assigment, setAssignment] = useState([]);
+  const [country, setCountry] = useState([]);
   const [isRefreshed, setIsrefreshed] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -32,7 +31,7 @@ const CountryDashboard = () => {
       navigate("/login");
       return;
     }
-    const fetchAssigment = async () => {
+    const fetchCountry = async () => {
       setIsLoading(true);
       const config = {
         headers: {
@@ -44,14 +43,14 @@ const CountryDashboard = () => {
         const res = await axios.get(`${BASE_URL + "/country"}`, config);
 
         if (res) {
-          setAssignment(res.data.data);
+          setCountry(res.data.data);
           setIsLoading(false);
         }
       } catch (error) {
         setIsloading(false);
       }
     };
-    fetchAssigment();
+    fetchCountry();
   }, [user, dispatch, navigate, isRefreshed]);
 
   const changeStatus = () => {
@@ -118,25 +117,16 @@ const CountryDashboard = () => {
 
       <section className="show_contact">
         <h1 className="h1">Country Operator List</h1>
-        {/* <section className="main"> */}
-        {/* <button
-          className="add"
-          onClick={() => {
-            navigate("/add");
-          }}
-        >
-          <FiUpload className="upload-icon" />
-          Add new Operator pair
-        </button> */}
+
         <button className="add" onClick={() => setIsModalOpen(true)}>
           <FiUpload className="upload-icon" />
           Add new Operator pair
         </button>
         {/* </section> */}
 
-        {assigment.length > 0 ? (
+        {country.length > 0 ? (
           <div className="contact">
-            {assigment.map((con) => {
+            {country.map((con) => {
               return (
                 <CountryCard
                   key={con._id}
@@ -160,7 +150,7 @@ const CountryDashboard = () => {
               <h1 style={{ fontWeight: 500 }}>loading.. please wait</h1>
             ) : (
               <h1 style={{ fontWeight: 500 }}>
-                No assignments available at this moment.
+                No Country available at this moment.
               </h1>
             )}
           </div>
@@ -205,18 +195,6 @@ const CountryDashboard = () => {
                   <option value={"High"}>High</option>
                   <option value={"Low"}>Low</option>
                 </select>
-                {/* <select
-                  name="priority"
-                  value={formData.priority}
-                  onChange={handleInputChange}
-                  className="priority-select"
-                >
-                  {PRIORITY_OPTIONS.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select> */}
               </div>
             </div>
             <div className="modal-actions">

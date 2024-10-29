@@ -1,101 +1,11 @@
-// import React, { useState } from "react";
-// import "../css/contactCard.css";
-// import axios from "axios";
-// import { useSelector } from "react-redux";
-// import { toast } from "react-toastify";
-// import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
-// const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
-
-// const CountryCard = ({ con, changeStatus }) => {
-//   const { user } = useSelector((state) => state.auth);
-
-//   const handleUpdate = async () => {
-//     const config = {
-//       headers: {
-//         authorization: `Bearer ${user?.token}`,
-//       },
-//     };
-//     try {
-//       const payload = {
-//         country: con.country,
-//         operator: con.operator,
-//         prioriry: con.prioriryi,
-//       };
-
-//       const data = await axios.post(
-//         `${BASE_URL}/country/update`,
-//         payload,
-//         config
-//       );
-//       if (data) {
-//         toast.success("Country Operator pair Updated");
-//         changeStatus();
-//       }
-//     } catch (error) {
-//       console.log(error);
-//       toast.error(error?.response?.data?.message);
-//     }
-//   };
-
-//   const handleDelete = async () => {
-//     const config = {
-//       headers: {
-//         authorization: `Bearer ${user?.token}`,
-//       },
-//     };
-//     try {
-//       const payload = { country: con.country, operator: con.operator };
-
-//       const data = await axios.post(
-//         `${BASE_URL}/country/delete`,
-//         payload,
-//         config
-//       );
-//       if (data) {
-//         changeStatus();
-//         toast.success("Country Operator pair deleted");
-//       }
-//     } catch (error) {
-//       console.log(error);
-//       toast.error(error?.response?.data?.message);
-//     }
-//   };
-
-//   return (
-//     <div className="card">
-//       <h3>Country: {con?.country}</h3>
-//       <small>Operator: {con?.operator}</small>
-//       <h5>Priority: {con?.priority}</h5>
-
-//       <div>
-//         <div className="flex">
-//           <button className="accept" onClick={handleUpdate}>
-//             <FaCheckCircle /> Update
-//           </button>
-//           <button className="reject" onClick={handleDelete}>
-//             <FaTimesCircle /> Delete
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default CountryCard;
-
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
-import "../css/contactCard.css";
+import "../css/card.css";
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
-
-const PRIORITY_OPTIONS = [
-  { value: 1, label: "High" },
-  { value: 2, label: "Low" },
-];
 
 const CountryCard = ({ con, changeStatus }) => {
   const { user } = useSelector((state) => state.auth);

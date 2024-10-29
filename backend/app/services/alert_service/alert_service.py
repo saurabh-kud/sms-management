@@ -9,7 +9,7 @@ from app.config import TELEGRAM_CHAT_ID
 # MongoDB connection
 client = MongoClient(f"mongodb://{MONGO_HOST}:27017")
 db = client["sms_service"]
-collection = db["sms_analytics"]
+collection = db["alert"]
 
 
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -52,88 +52,36 @@ class DatabaseMonitor:
         print("db called")
         try:
 
-            sessions = collection.find({})
-            # Initialize an empty dictionary to store data grouped by country
-            country_data = {}
+            alerts_data = collection.find({})
+            logger.info(f"alert data all {alerts_data}")
 
-            # Iterate through each document in the collection
-            for session in sessions:
-                for cc, operator_data in session.items():
-                    if cc == "_id" or cc == "timestamp":
-                        continue  # Skip the MongoDB document ID and handle timestamp separately
+            serialized_alerts = [
+                {**alert, "_id": str(alert["_id"])} for alert in alerts_data
+            ]
 
-                    # Ensure the country exists in the final structure
-                    if cc not in country_data:
-                        country_data[cc] = {"country_code": cc, "operators": []}
+            for alert in serialized_alerts:
+                country = alert.get("country")
+                operator = alert.get("operator")
+                success_rate = alert.get("success_rate", 0)
+                attempts = alert.get("attempts", 0)
+                sent_count = alert.get("sent", 0)
+                if success_rate <= 70:
+                    message = (
+                        f"⚠️ Alert! Low Success Rate\n\n"
+                        f"Country: {country}\n"
+                        f"Operator: {operator}\n"
+                        f"Success Rate: {success_rate}%\n"
+                        f"Attempts: {attempts}\n"
+                        f"Sent: {sent_count}\n"
+                    )
+                    logger.info(f"\n\nteligram message sent {message}\n\n")
+                    # Create event loop for async telegram message
+                    loop = asyncio.new_event_loop()
+                    asyncio.set_event_loop(loop)
+                    loop.run_until_complete(self.send_telegram_alert(message))
+                    loop.close()
 
-                    for operator, metrics in operator_data.items():
-
-                        operator_list = country_data.get(cc).get("operators")
-                        logger.info(f"operator list {operator_list}")
-
-                        if operator not in operator_list:
-                            logger.info(f"operator list inside if {operator_list}")
-
-                            success_rate = metrics.get("success_rate", 0)
-                            if success_rate and success_rate < 50:
-                                message = (
-                                    f"⚠️ Alert! Threshold exceeded!\n"
-                                    f"Current value: {success_rate}\n"
-                                    f"Threshold: {self.threshold}\n"
-                                    f"Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
-                                )
-                                message = (
-                                    f"⚠️ Alert! Low Success Rate\n\n"
-                                    f"Country: {cc}\n"
-                                    f"Operator: {operator}\n"
-                                    f"Success Rate: {success_rate}%\n"
-                                    f"Attempts: {metrics.get('attempts', 0)}\n"
-                                    f"Sent: {metrics.get('sent', 0)}\n"
-                                    f"Confirmed: {metrics.get('confirmed', 0)}\n"
-                                    f"Time: {session['timestamp'].strftime('%Y-%m-%d %H:%M:%S')}"
-                                )
-                                logger.info(f"\n\nteligram message sent {message}\n\n")
-                                # Create event loop for async telegram message
-                                loop = asyncio.new_event_loop()
-                                asyncio.set_event_loop(loop)
-                                loop.run_until_complete(
-                                    self.send_telegram_alert(message)
-                                )
-                                loop.close()
-
-                            country_data[cc]["operators"].append(operator)
-
-                        # final_data[operator] = metrics
-
-                        # if counter > 0:
-                        #     break
-                        # counter += 1
-
-                        # success_rate = metrics.get("success_rate", 0)
-                        # logger.info(f"success rate: {success_rate}")
-
-                        # if success_rate and success_rate < 50:
-                        #     message = (
-                        #         f"⚠️ Alert! Threshold exceeded!\n"
-                        #         f"Current value: {success_rate}\n"
-                        #         f"Threshold: {self.threshold}\n"
-                        #         f"Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
-                        #     )
-                        #     message = (
-                        #         f"⚠️ <b>Low Success Rate Alert</b>\n\n"
-                        #         f"Country: {cc}\n"
-                        #         f"Operator: {operator}\n"
-                        #         f"Success Rate: {success_rate}%\n"
-                        #         f"Attempts: {metrics.get('attempts', 0)}\n"
-                        #         f"Sent: {metrics.get('sent', 0)}\n"
-                        #         f"Confirmed: {metrics.get('confirmed', 0)}\n"
-                        #         f"Time: {session['timestamp'].strftime('%Y-%m-%d %H:%M:%S')}"
-                        #     )
-                        # Create event loop for async telegram message
-                        # loop = asyncio.new_event_loop()
-                        # asyncio.set_event_loop(loop)
-                        # loop.run_until_complete(self.send_telegram_alert(message))
-                        # loop.close()
+            collection.delete_many({})
         except Exception as e:
             logger.error(f"Database query failed: {e}")
 
@@ -141,7 +89,7 @@ class DatabaseMonitor:
         """Start the monitoring schedule."""
         try:
             self.scheduler.add_job(
-                self.check_database, "interval", minutes=1, id="database_monitor"
+                self.check_database, "interval", minutes=10, id="database_monitor"
             )
             self.scheduler.start()
             logger.info("Monitoring started successfully")

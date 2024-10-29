@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FiUpload } from "react-icons/fi";
 
-import AssignmentCard from "../Components/AssignmentCard";
+import SessionCard from "../Components/SessionCard";
 import "../css/register.css";
 import "../css/dashboard.css";
 import axios from "axios";
@@ -16,14 +16,14 @@ const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [assigment, setAssignment] = useState([]);
+  const [sessions, setSessions] = useState([]);
 
   useEffect(() => {
     if (!user) {
       navigate("/login");
       return;
     }
-    const fetchAssigment = async () => {
+    const fetchSessions = async () => {
       setIsLoading(true);
       const config = {
         headers: {
@@ -35,14 +35,14 @@ const Dashboard = () => {
         const res = await axios.get(`${BASE_URL + "/sessions"}`, config);
 
         if (res) {
-          setAssignment(res.data.data);
+          setSessions(res.data.data);
           setIsLoading(false);
         }
       } catch (error) {
         setIsloading(false);
       }
     };
-    fetchAssigment();
+    fetchSessions();
   }, [user, dispatch, navigate]);
 
   return (
@@ -64,10 +64,10 @@ const Dashboard = () => {
       <section className="show_contact">
         <h1 className="h1">Session List</h1>
 
-        {assigment.length > 0 ? (
+        {sessions.length > 0 ? (
           <div className="contact">
-            {assigment.map((con) => {
-              return <AssignmentCard key={con._id} con={con} />;
+            {sessions.map((con) => {
+              return <SessionCard key={con._id} con={con} />;
             })}
           </div>
         ) : (
@@ -84,7 +84,7 @@ const Dashboard = () => {
               <h1 style={{ fontWeight: 500 }}>loading.. please wait</h1>
             ) : (
               <h1 style={{ fontWeight: 500 }}>
-                No assignments available at this moment.
+                No Session available at this moment.
               </h1>
             )}
           </div>

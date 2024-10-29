@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import "../css/contactCard.css";
+import "../css/card.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
-const AssignmentCard = ({ con }) => {
+const SessionCard = ({ con }) => {
   const { user } = useSelector((state) => state.auth);
   const [assignmentStatus, setAssignmentStatus] = useState(con?.status);
 
@@ -110,4 +110,4 @@ const AssignmentCard = ({ con }) => {
   );
 };
 
-export default AssignmentCard;
+export default SessionCard;

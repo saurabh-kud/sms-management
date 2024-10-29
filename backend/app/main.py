@@ -26,6 +26,7 @@ from app.utils.uptime import getUptime
 
 from app.api.main import api_router
 from app.services.alert_service.alert_service import DatabaseMonitor
+from app.services.metrics.metrics import get_metrics_for_prometheus
 
 
 app = FastAPI(
@@ -86,6 +87,7 @@ app.include_router(api_router)
 
 @app.get("/metrics")
 def get_metrics():
+    get_metrics_for_prometheus()
     return Response(
         content=prometheus_client.generate_latest(), media_type="text/plain"
     )

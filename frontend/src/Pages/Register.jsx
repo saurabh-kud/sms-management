@@ -16,10 +16,9 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
-    isAdmin: false,
   });
 
-  const { name, email, password, isAdmin } = formData;
+  const { name, email, password } = formData;
 
   useEffect(() => {
     if (isError) {
@@ -47,9 +46,7 @@ const Register = () => {
       toast.error("All fields are required");
     } else {
       const userData = { name, email, password };
-      // if (isAdmin) {
-      //   userData.role = "admin";
-      // }
+
       dispatch(register(userData));
     }
   };
@@ -108,16 +105,6 @@ const Register = () => {
               onChange={handleChange}
             />
           </div>
-
-          <label className="checkbox-label">
-            <input
-              type="checkbox"
-              name="isAdmin"
-              checked={isAdmin}
-              onChange={handleChange}
-            />
-            Are you an admin?
-          </label>
 
           <button type="submit">Register</button>
         </form>
