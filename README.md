@@ -123,17 +123,6 @@ $ docker compose -f docker-compose.yml -p sms-stack up -d --build --force-recrea
 
 ## 🔌 API Endpoints
 
-<div align="center">
-
-### 🎯 Core Features
-
-[![Auth](https://img.shields.io/badge/Auth-4_endpoints-blue)](#authentication)
-[![Sessions](https://img.shields.io/badge/Sessions-4_endpoints-green)](#session-management)
-[![Countries](https://img.shields.io/badge/Countries-4_endpoints-orange)](#country-operator-management)
-[![Metrics](https://img.shields.io/badge/Metrics-2_endpoints-red)](#metrics-monitoring)
-
-</div>
-
 ### 🔐 Authentication
 
 <details>
@@ -575,6 +564,13 @@ sms_sent{country="Tajikistan",operator="MegaFon"} 25.0
 <summary>🔑 Login</summary>
 <div align="center">
   <img src="./examples/login.png" alt="login" />
+</div>
+</details>
+
+<details>
+<summary>📊 teligram Sms Alert</summary>
+<div align="center">
+  <img src="./examples/sms.jpg" alt="Sms alert" />
 </div>
 </details>
 
