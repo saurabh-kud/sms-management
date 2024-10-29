@@ -83,15 +83,15 @@ system that enables:
 
 ## 🚀 Microservices
 
-| Service              | Description                                     |
-| -------------------- | ----------------------------------------------- |
-| 📱 SMS System        | Simulates SMS submission and session management |
-| 🎮 Management Server | Manages sessions and country-operator pairs     |
-| 🖥️ Frontend          | User interface with real-time visualization     |
-| 🗄️ Mongo Server      | Stores metrics and operational data             |
-| 🔐 Postgres Server   | Manages user authentication                     |
-| 📊 Prometheus Server | Collects real-time metrics                      |
-| 📈 Grafana Server    | Visualizes system metrics                       |
+| Service              | Description                                            |
+| -------------------- | ------------------------------------------------------ |
+| 📱 SMS System        | Simulates SMS submission and session screen management |
+| 🎮 Management Server | Manages sessions and country-operator pairs            |
+| 🖥️ Frontend          | User interface with real-time visualization            |
+| 🗄️ Mongo Server      | Stores metrics and operational data                    |
+| 🔐 Postgres Server   | Manages user authentication                            |
+| 📊 Prometheus Server | Collects real-time metrics                             |
+| 📈 Grafana Server    | Visualizes system metrics                              |
 
 ## 🛠️ Installation
 
@@ -120,6 +120,18 @@ $ docker compose -f docker-compose.yml -p sms-stack up -d --build --force-recrea
 | Backend API | http://localhost:8000/api/docs | -           |
 | Prometheus  | http://localhost:9090          | -           |
 | Grafana     | http://localhost:3000          | admin/admin |
+
+---
+
+> **Note**: visulization setup
+
+- Open URL `http://localhost:3000` with default credential admin/admin
+- Click on add your first datasouce put `http://sms-stack-prometheus-1:9090` on connection url and click on save and test
+- Now click on build Dashboard on next page click on import dashboard
+- Now import `grafana_dashboard.json` file from main cloned directory and import
+- You can see now all the metrices like sms sent, success rate and all..
+
+---
 
 ## 🔌 API Endpoints
 

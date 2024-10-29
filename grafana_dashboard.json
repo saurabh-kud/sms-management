@@ -19,7 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 3,
   "links": [
     {
       "asDropdown": false,
@@ -37,8 +37,7 @@
   "panels": [
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "ce2240k0qopa8b"
+        "type": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -88,8 +87,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "ce2240k0qopa8b"
+            "type": "prometheus"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -109,8 +107,7 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "ce2240k0qopa8b"
+        "type": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -135,7 +132,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 7,
         "w": 13,
         "x": 10,
         "y": 0
@@ -175,8 +172,7 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "ce2240k0qopa8b"
+        "type": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -241,8 +237,7 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "ce2240k0qopa8b"
+        "type": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -270,7 +265,7 @@
         "h": 8,
         "w": 13,
         "x": 10,
-        "y": 6
+        "y": 7
       },
       "id": 4,
       "options": {
@@ -307,8 +302,7 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "ce2240k0qopa8b"
+        "type": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -373,8 +367,7 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "ce2240k0qopa8b"
+        "type": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -402,7 +395,7 @@
         "h": 8,
         "w": 13,
         "x": 10,
-        "y": 14
+        "y": 15
       },
       "id": 6,
       "options": {
@@ -438,7 +431,7 @@
       "type": "gauge"
     }
   ],
-  "preload": false,
+  "preload": true,
   "schemaVersion": 40,
   "tags": [],
   "templating": {
@@ -451,7 +444,6 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "sms manament",
-  "uid": "ce23ron7dhy4gd",
-  "version": 13,
+  "version": 6,
   "weekStart": ""
 }
