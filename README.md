@@ -56,7 +56,7 @@ system that enables:
 ## 🏗️ Architecture
 
 <div align="center">
-  <img src="./example/1.png" alt="Architecture Diagram" />
+  <img src="./example/arch.png" alt="Architecture Diagram" />
 </div>
 
 ## 🛠️ Tech Stack
@@ -103,7 +103,7 @@ $ git clone https://github.com/saurabh-kud/sms-management
 # go to sms-management directory
 $ cd sms-management
 
-# change .env.example to .env and put your own credential for teligram token and chat id if you don't provide then it just not send messages
+# change .env.example to .env and put your own credential for teligram token and chat id if you don't provide then it will not send alert messages
 $ .env.example --> .env
 
 # run docker compose
@@ -581,7 +581,7 @@ sms_sent{country="Tajikistan",operator="MegaFon"} 25.0
 <details>
 <summary>📊 Grafana Dashboard</summary>
 <div align="center">
-  <img src="./example/grafana.png" alt="Grafana Dashboard" />
+  <img src="./examples/grafana.png" alt="Grafana Dashboard" />
 </div>
 </details>
 
