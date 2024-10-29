@@ -6,7 +6,7 @@ services:
     container_name: sms_system
     restart: always
     command: >
-      /bin/sh -c "uvicorn api_service_micro1:app --host 0.0.0.0 --port 8001"
+      /bin/sh -c "uvicorn main:app --host 0.0.0.0 --port 8001"
     # volumes:
     #   - ./app:/app
     links:

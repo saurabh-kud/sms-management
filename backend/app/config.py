@@ -19,3 +19,5 @@ DOCS_ENABLED = os.environ.get("DOCS_ENABLED") or True
 
 MONGO_HOST = os.environ.get("MONGO_HOST") or "mongo"
 SMS_HOST = os.environ.get("SMS_HOST") or "sms_system"
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN") or "xty"
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID") or "12345"

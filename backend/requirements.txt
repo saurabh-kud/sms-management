@@ -10,3 +10,5 @@ pymongo
 requests
 uvicorn
 prometheus_client
+apscheduler 
+python-telegram-bot

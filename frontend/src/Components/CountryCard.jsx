@@ -121,7 +121,7 @@ const CountryCard = ({ con, changeStatus }) => {
       },
     };
     try {
-      const data = await axios.post(
+      const data = await axios.put(
         `${BASE_URL}/country/update`,
         formData,
         config

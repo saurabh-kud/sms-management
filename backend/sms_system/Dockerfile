@@ -15,8 +15,8 @@ WORKDIR /app
 COPY ./requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /tmp/requirements.txt 
 
-COPY ./api_service_micro1.py /app
-COPY ./your_python_script.py /app
+COPY ./main.py /app
+COPY ./script.py /app
 # Install Python dependencies
 # RUN pip install fastapi uvicorn pymongo
 

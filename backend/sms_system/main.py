@@ -31,7 +31,7 @@ def start_screen_session(country, operator):
         # Start the screen session in detached mode
         try:
             # subprocess.run(f"screen -dmS {session_name} python3 /app/your_python_script.py --country {country} --operator {operator}", shell=True, check=True)
-            subprocess.run(["screen" , "-dmS", session_name, "python3", "your_python_script.py", "--country", country, "--operator", operator])
+            subprocess.run(["screen" , "-dmS", session_name, "python3", "script.py", "--country", country, "--operator", operator])
             collection.update_one({"country": country, "operator": operator}, {"$set": {"status": "Active"}})
 
             print(f"Started session for {session_name}")

@@ -8,6 +8,7 @@ from app.error.handler import value_error_handler
 from app.error.handler import custom_error_handler
 import time
 import uvicorn
+
 # from prometheus_fastapi_instrumentator import Instrumentator
 import prometheus_client
 from fastapi import Response
@@ -24,7 +25,7 @@ from app.utils import custom_handler
 from app.utils.uptime import getUptime
 
 from app.api.main import api_router
-
+from app.services.alert_service.alert_service import DatabaseMonitor
 
 
 app = FastAPI(
@@ -41,24 +42,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+monitor = DatabaseMonitor()
 
 
-
-# instrumentator = Instrumentator().add(
-#     sms_attempts
-# ).add(
-#     sms_sent
-# ).add(
-#     sms_received
-# ).add(
-#     sms_confirmed
-# ).add(
-#     sms_success_rate
-# ).add(
-#     sms_confirm_rate
-# )
-# # prometheus service configration
-
+@app.on_event("startup")
+async def startup_event():
+    try:
+        monitor.start_monitoring()
+    except Exception as e:
+        print(f"Failed to start monitoring: {e}")
+        raise e
 
 
 # @app.exception_handler(custom_handler.CustomException)
@@ -68,9 +61,8 @@ app.add_middleware(
 
 app.add_exception_handler(CustomException, custom_error_handler)
 app.add_exception_handler(ValueError, value_error_handler)
-app.add_exception_handler(
-        RequestValidationError, validation_exception_handler
-    )
+app.add_exception_handler(RequestValidationError, validation_exception_handler)
+
 
 @app.get("/health", status_code=status.HTTP_200_OK, tags=["Health Route"])
 async def health_route(req: Request):
@@ -91,12 +83,13 @@ async def health_route(req: Request):
 
 app.include_router(api_router)
 
+
 @app.get("/metrics")
 def get_metrics():
     return Response(
-        content=prometheus_client.generate_latest(),
-        media_type= "text/plain"
+        content=prometheus_client.generate_latest(), media_type="text/plain"
     )
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080, reload=True)
