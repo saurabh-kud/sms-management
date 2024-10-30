@@ -121,7 +121,7 @@ $ docker compose -f docker-compose.yml -p sms-stack up -d --build --force-recrea
 | Prometheus  | http://localhost:9090          | -           |
 | Grafana     | http://localhost:3000          | admin/admin |
 
-> 📘 **Note**: After running the container for very first you have to wait for 2 min to get real-time metrices
+> 📘 **Note**: After running the container for very first you have to wait for 2 min to get real-time metrices and data will be updated every 2 min
 
 ---
 
