@@ -39,7 +39,7 @@ const Dashboard = () => {
           setIsLoading(false);
         }
       } catch (error) {
-        setIsloading(false);
+        setIsLoading(false);
       }
     };
     fetchSessions();

@@ -526,6 +526,13 @@ sms_sent{country="Tajikistan",operator="MegaFon"} 25.0
 </details>
 
 <details>
+<summary>⚡ Message simulation  </summary>
+<div align="center">
+  <img src="./examples/sim.png" alt="Screen session" />
+</div>
+</details>
+
+<details>
 <summary>📈 Main Dashboard </summary>
 <div align="center">
   <img src="./examples/graph.png" alt="Graph Dashboard" />
@@ -595,12 +602,14 @@ sms_sent{country="Tajikistan",operator="MegaFon"} 25.0
 </div>
 </details>
 
-<!-- <details>
+<details>
 <summary>📈 Prometheus Dashboard</summary>
 <div align="center">
-  <img src="./example/3.png" alt="Prometheus Dashboard" />
+  <img src="./example/prom.png" alt="Prometheus Dashboard" />
 </div>
-</details> -->
+</details>
+
+[![Youtube video](./examples/graph.png)](https://www.youtube.com/watch?v=QW85MvgaEPQ)
 
 ## 👨‍💻 Author
 
