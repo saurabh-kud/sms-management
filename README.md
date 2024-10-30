@@ -609,6 +609,7 @@ sms_sent{country="Tajikistan",operator="MegaFon"} 25.0
 </div>
 </details>
 
+<summary>📺 Watch video of demonstrating all features</summary>
 [![Youtube video](./examples/graph.png)](https://www.youtube.com/watch?v=QW85MvgaEPQ)
 
 ## 👨‍💻 Author
