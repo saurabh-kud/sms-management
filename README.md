@@ -605,11 +605,13 @@ sms_sent{country="Tajikistan",operator="MegaFon"} 25.0
 <details>
 <summary>📈 Prometheus Dashboard</summary>
 <div align="center">
-  <img src="./example/prom.png" alt="Prometheus Dashboard" />
+  <img src="./examples/prom.png" alt="Prometheus Dashboard" />
 </div>
 </details>
 
 <summary>📺 Watch video of demonstrating all features</summary>
+<br/>
+
 [![Youtube video](./examples/graph.png)](https://www.youtube.com/watch?v=QW85MvgaEPQ)
 
 ## 👨‍💻 Author
